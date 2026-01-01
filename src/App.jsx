@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
 import Loader from './components/Loader'
 import Header from './components/Header'
@@ -10,6 +10,7 @@ import SocialLinks from './components/SocialLinks'
 
 function App() {
   const [isLoading, setIsLoading] = useState(true)
+  const audioRef = useRef(null)
 
   useEffect(() => {
     // Prevent scrolling during load
@@ -17,6 +18,12 @@ function App() {
       document.body.style.overflow = 'hidden'
     } else {
       document.body.style.overflow = 'unset'
+      // Play audio when main page loads
+      if (audioRef.current) {
+        audioRef.current.play().catch(err => {
+          console.log('Audio autoplay prevented:', err)
+        })
+      }
     }
   }, [isLoading])
 
@@ -28,7 +35,8 @@ function App() {
     <Router>
       {isLoading && <Loader onLoadComplete={handleLoadComplete} />}
       <div className="App">
-        <Header />
+        <audio ref={audioRef} src="/horsesound.mp3" loop />
+        <Header audioRef={audioRef} />
         <Hero />
         <TokenInfoBar />
         <About />

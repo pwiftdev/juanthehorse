@@ -3,29 +3,14 @@ import './Loader.css'
 import logo from '../../assets/juanlogo.png'
 
 function Loader({ onLoadComplete }) {
-  const [progress, setProgress] = useState(0)
   const [isExiting, setIsExiting] = useState(false)
 
-  useEffect(() => {
-    // Simulate loading progress
-    const interval = setInterval(() => {
-      setProgress(prev => {
-        if (prev >= 100) {
-          clearInterval(interval)
-          setTimeout(() => {
-            setIsExiting(true)
-            setTimeout(() => {
-              onLoadComplete()
-            }, 1000) // Match exit animation duration
-          }, 500) // Pause at 100% before exit
-          return 100
-        }
-        return prev + Math.random() * 15
-      })
-    }, 150)
-
-    return () => clearInterval(interval)
-  }, [onLoadComplete])
+  const handleEnter = () => {
+    setIsExiting(true)
+    setTimeout(() => {
+      onLoadComplete()
+    }, 1000) // Match exit animation duration
+  }
 
   return (
     <div className={`loader-container ${isExiting ? 'exit' : ''}`}>
@@ -45,26 +30,15 @@ function Loader({ onLoadComplete }) {
 
         <div className="loader-text">
           <h1 className="loader-title">
-            <span className="title-word">Stabling</span>
+            <span className="title-word">Welcome to</span>
             <span className="title-juan">$JUAN</span>
           </h1>
-          <div className="loader-dots">
-            <span className="dot"></span>
-            <span className="dot"></span>
-            <span className="dot"></span>
-          </div>
         </div>
 
-        <div className="progress-container">
-          <div className="progress-bar">
-            <div 
-              className="progress-fill" 
-              style={{ width: `${Math.min(progress, 100)}%` }}
-            ></div>
-            <div className="progress-shimmer"></div>
-          </div>
-          <div className="progress-text">{Math.floor(Math.min(progress, 100))}%</div>
-        </div>
+        <button className="enter-button" onClick={handleEnter}>
+          <span className="button-text">Enter</span>
+          <div className="button-shine"></div>
+        </button>
       </div>
 
       <div className="particles">
