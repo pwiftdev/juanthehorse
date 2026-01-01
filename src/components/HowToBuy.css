@@ -1,0 +1,309 @@
+.how-to-buy {
+  width: 100%;
+  min-height: 100vh;
+  padding: 6rem 2rem;
+  background: linear-gradient(180deg, #deb887 0%, #d2b48c 100%);
+  position: relative;
+}
+
+.htb-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.htb-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-title-dark {
+  font-size: 3rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #3e2723 0%, #5d4037 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.title-underline-dark {
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(135deg, #8b5a2b 0%, #a0522d 100%);
+  margin: 0 auto;
+  border-radius: 2px;
+}
+
+.contract-box {
+  background: linear-gradient(135deg, #654321 0%, #8b5a2b 100%);
+  border-radius: 20px;
+  padding: 2.5rem;
+  margin-bottom: 4rem;
+  box-shadow: 0 20px 60px rgba(101, 67, 33, 0.4);
+  border: 2px solid rgba(218, 165, 32, 0.3);
+}
+
+.contract-label {
+  color: #f5deb3;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.solana-icon {
+  font-size: 1.2rem;
+  color: #ffd700;
+}
+
+.contract-address-wrapper {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.contract-address {
+  flex: 1;
+  background: rgba(62, 39, 35, 0.5);
+  backdrop-filter: blur(10px);
+  color: #f5deb3;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.95rem;
+  word-break: break-all;
+  border: 1px solid rgba(210, 180, 140, 0.3);
+  min-width: 0;
+}
+
+.copy-button {
+  background: linear-gradient(135deg, #daa520 0%, #ffd700 100%);
+  color: #3e2723;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.copy-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(218, 165, 32, 0.4);
+  background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+}
+
+.copy-button.copied {
+  background: linear-gradient(135deg, #4caf50 0%, #66bb6a 100%);
+  color: white;
+}
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.step-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(245, 222, 179, 0.95) 100%);
+  border-radius: 20px;
+  padding: 2.5rem 2rem;
+  box-shadow: 0 10px 40px rgba(101, 67, 33, 0.15);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid rgba(139, 90, 43, 0.2);
+  position: relative;
+}
+
+.step-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px rgba(139, 90, 43, 0.35);
+  border-color: rgba(139, 90, 43, 0.5);
+}
+
+.step-icon {
+  font-size: 3rem;
+  color: #8b5a2b;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.step-number {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #8b5a2b 0%, #a0522d 100%);
+  color: #f5deb3;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 8px 20px rgba(139, 90, 43, 0.3);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.step-card h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #3e2723;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.step-card p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #4e342e;
+  text-align: center;
+}
+
+.cta-box {
+  background: linear-gradient(135deg, #3e2723 0%, #5d4037 100%);
+  border-radius: 24px;
+  padding: 3rem;
+  text-align: center;
+  color: #f5deb3;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid rgba(218, 165, 32, 0.3);
+}
+
+.cta-box::before {
+  content: '';
+  position: absolute;
+  width: 15rem;
+  height: 15rem;
+  opacity: 0.08;
+  right: -3rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y="80" font-size="80" fill="%23ffd700">🐴</text></svg>');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.cta-box h3 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.cta-box p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+  position: relative;
+  z-index: 1;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+
+.cta-button {
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.cta-button.primary {
+  background: linear-gradient(135deg, #daa520 0%, #ffd700 100%);
+  color: #3e2723;
+  box-shadow: 0 10px 30px rgba(218, 165, 32, 0.4);
+}
+
+.cta-button.primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(218, 165, 32, 0.6);
+  background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+}
+
+.cta-button.secondary {
+  background: rgba(245, 222, 179, 0.2);
+  color: #f5deb3;
+  border: 2px solid #f5deb3;
+  box-shadow: 0 10px 30px rgba(245, 222, 179, 0.2);
+}
+
+.cta-button.secondary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(245, 222, 179, 0.3);
+  background: rgba(245, 222, 179, 0.3);
+  border-color: #ffd700;
+  color: #ffd700;
+}
+
+@media (max-width: 768px) {
+  .how-to-buy {
+    padding: 4rem 1.5rem;
+  }
+
+  .section-title-dark {
+    font-size: 2rem;
+  }
+
+  .contract-box {
+    padding: 2rem 1.5rem;
+  }
+
+  .contract-address-wrapper {
+    flex-direction: column;
+  }
+
+  .contract-address {
+    font-size: 0.8rem;
+  }
+
+  .copy-button {
+    width: 100%;
+  }
+
+  .steps-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .cta-box {
+    padding: 2rem 1.5rem;
+  }
+
+  .cta-box h3 {
+    font-size: 1.5rem;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+  }
+
+  .cta-button {
+    width: 100%;
+  }
+}
+
