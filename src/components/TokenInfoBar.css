@@ -1,0 +1,152 @@
+.token-info-bar {
+  width: 100%;
+  background: linear-gradient(135deg, rgba(101, 67, 33, 0.95) 0%, rgba(139, 90, 43, 0.95) 100%);
+  backdrop-filter: blur(10px);
+  border-top: 2px solid rgba(218, 165, 32, 0.3);
+  border-bottom: 2px solid rgba(218, 165, 32, 0.3);
+  overflow: hidden;
+  position: relative;
+  padding: 1rem 0;
+  box-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.token-info-bar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(218, 165, 32, 0.05) 50%,
+    transparent 100%
+  );
+  animation: shimmer 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes shimmer {
+  0%, 100% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(100%);
+  }
+}
+
+.info-bar-track {
+  display: flex;
+  gap: 3rem;
+  animation: scrollInfo 30s linear infinite;
+  width: fit-content;
+}
+
+.token-info-bar:hover .info-bar-track {
+  animation-play-state: paused;
+}
+
+@keyframes scrollInfo {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.info-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #daa520;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.info-value {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #f5deb3;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 0.02em;
+}
+
+.info-value.positive {
+  color: #4caf50;
+}
+
+.info-value.negative {
+  color: #f44336;
+}
+
+@media (max-width: 968px) {
+  .token-info-bar-wrapper {
+    height: 55px;
+  }
+
+  .info-item {
+    font-size: 1rem;
+    margin-right: 2.5rem;
+  }
+
+  .token-info-track {
+    animation-duration: 50s;
+  }
+}
+
+@media (max-width: 768px) {
+  .token-info-bar-wrapper {
+    height: 50px;
+  }
+
+  .info-item {
+    font-size: 0.9rem;
+    margin-right: 2rem;
+  }
+
+  .info-label {
+    margin-right: 0.4rem;
+  }
+
+  .token-info-track {
+    animation-duration: 45s;
+    padding: 0 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .token-info-bar-wrapper {
+    height: 45px;
+  }
+
+  .info-item {
+    font-size: 0.8rem;
+    margin-right: 1.5rem;
+  }
+
+  .info-label {
+    font-size: 0.75rem;
+    margin-right: 0.35rem;
+  }
+
+  .info-value {
+    font-size: 0.85rem;
+  }
+
+  .token-info-track {
+    animation-duration: 40s;
+    padding: 0 1rem;
+  }
+}
+

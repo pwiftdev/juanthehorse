@@ -123,11 +123,84 @@
   font-size: 1.3rem;
   font-weight: 500;
   color: #f5deb3;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.hero-contract {
+  margin-bottom: 2rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+.contract-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(15px);
+  padding: 0.75rem 1rem;
+  border-radius: 50px;
+  border: 2px solid rgba(218, 165, 32, 0.3);
+  transition: all 0.3s ease;
+}
+
+.contract-wrapper:hover {
+  border-color: rgba(218, 165, 32, 0.5);
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.contract-value {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #f5deb3;
+  font-family: 'Courier New', monospace;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  letter-spacing: 0.02em;
+}
+
+.copy-button {
+  background: linear-gradient(135deg, rgba(218, 165, 32, 0.3) 0%, rgba(255, 215, 0, 0.2) 100%);
+  border: 1px solid rgba(218, 165, 32, 0.4);
+  color: #ffd700;
+  padding: 0.5rem 1.25rem;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.copy-button:hover {
+  background: linear-gradient(135deg, rgba(218, 165, 32, 0.4) 0%, rgba(255, 215, 0, 0.3) 100%);
+  border-color: rgba(218, 165, 32, 0.6);
+  transform: translateY(-2px);
+  color: #ffed4e;
+  box-shadow: 0 4px 15px rgba(218, 165, 32, 0.3);
+}
+
+.copy-button:active {
+  transform: translateY(0);
+}
+
+.copy-button svg {
+  font-size: 0.9rem;
 }
 
 .hero-buttons {
@@ -217,9 +290,35 @@
     padding: 0 1rem;
   }
 
+  .hero-contract {
+    margin-bottom: 1.5rem;
+    padding: 0 1rem;
+  }
+
+  .contract-wrapper {
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1rem;
+    border-radius: 20px;
+  }
+
+  .contract-value {
+    font-size: 0.8rem;
+    text-align: center;
+    word-break: break-all;
+    white-space: normal;
+    padding: 0.5rem 0;
+  }
+
+  .copy-button {
+    width: 100%;
+    padding: 0.75rem 1.5rem;
+  }
+
   .hero-buttons {
     flex-direction: column;
     gap: 1rem;
+    align-items: center;
   }
 
   .hero-button {
@@ -243,6 +342,23 @@
 
   .hero-tagline {
     font-size: 1rem;
+  }
+
+  .hero-contract {
+    padding: 0 0.75rem;
+  }
+
+  .contract-wrapper {
+    padding: 0.875rem;
+  }
+
+  .contract-value {
+    font-size: 0.75rem;
+  }
+
+  .copy-button {
+    font-size: 0.85rem;
+    padding: 0.65rem 1.25rem;
   }
 }
 

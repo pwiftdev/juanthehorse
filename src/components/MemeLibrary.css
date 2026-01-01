@@ -1,0 +1,218 @@
+.meme-library {
+  width: 100%;
+  min-height: 100vh;
+  padding: 8rem 0;
+  position: relative;
+  overflow: hidden;
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(139, 90, 43, 0.5) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(218, 165, 32, 0.45) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(160, 82, 45, 0.4) 0%, transparent 60%),
+    radial-gradient(circle at 30% 80%, rgba(101, 67, 33, 0.35) 0%, transparent 45%),
+    radial-gradient(circle at 70% 20%, rgba(255, 215, 0, 0.3) 0%, transparent 45%),
+    radial-gradient(circle at 60% 40%, rgba(139, 90, 43, 0.35) 0%, transparent 55%),
+    radial-gradient(circle at 40% 60%, rgba(218, 165, 32, 0.3) 0%, transparent 55%),
+    linear-gradient(180deg, rgba(245, 222, 179, 0.9) 0%, rgba(222, 184, 135, 0.9) 100%);
+  background-size: 200% 200%, 200% 200%, 200% 200%, 200% 200%, 200% 200%, 200% 200%, 200% 200%, 100% 100%;
+  animation: memeLibraryBackgroundMove 35s ease-in-out infinite;
+}
+
+@keyframes memeLibraryBackgroundMove {
+  0%, 100% {
+    background-position: 0% 0%, 100% 100%, 50% 50%, 0% 100%, 100% 0%, 50% 30%, 30% 70%, 0% 0%;
+  }
+  25% {
+    background-position: 50% 30%, 50% 70%, 80% 50%, 30% 80%, 70% 20%, 60% 40%, 40% 60%, 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%, 0% 0%, 0% 100%, 100% 0%, 0% 50%, 100% 50%, 50% 100%, 0% 0%;
+  }
+  75% {
+    background-position: 30% 50%, 70% 50%, 50% 0%, 20% 30%, 80% 70%, 40% 20%, 60% 80%, 0% 0%;
+  }
+}
+
+.meme-library-header {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.meme-library-title {
+  font-size: 4rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #654321 0%, #8b5a2b 50%, #daa520 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.meme-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.meme-scroll-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 5%,
+    black 95%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 5%,
+    black 95%,
+    transparent 100%
+  );
+}
+
+.meme-scroll-container:hover .meme-scroll-track {
+  animation-play-state: paused;
+}
+
+.meme-scroll-track {
+  display: flex;
+  gap: 2rem;
+  width: fit-content;
+}
+
+.track-1 {
+  animation: scrollMemes1 50s linear infinite;
+}
+
+.track-2 {
+  animation: scrollMemes2 55s linear infinite reverse;
+}
+
+.track-3 {
+  animation: scrollMemes3 60s linear infinite;
+}
+
+@keyframes scrollMemes1 {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scrollMemes2 {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scrollMemes3 {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.meme-item {
+  flex-shrink: 0;
+  width: 450px;
+  height: 450px;
+  border-radius: 25px;
+  overflow: hidden;
+  border: 3px solid rgba(139, 90, 43, 0.3);
+  backdrop-filter: blur(5px);
+  background: rgba(255, 255, 255, 0.08);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(101, 67, 33, 0.2);
+}
+
+.meme-item:hover {
+  transform: scale(1.08) translateY(-8px);
+  border-color: rgba(139, 90, 43, 0.6);
+  box-shadow: 0 20px 50px rgba(139, 90, 43, 0.4);
+}
+
+.meme-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+@media (max-width: 968px) {
+  .meme-library-section {
+    padding: 5rem 0;
+  }
+
+  .meme-library-title {
+    font-size: 3rem;
+  }
+
+  .meme-item {
+    width: 350px;
+    height: 250px;
+  }
+}
+
+@media (max-width: 768px) {
+  .meme-library-section {
+    padding: 4rem 0;
+    min-height: auto;
+  }
+
+  .meme-library-title {
+    font-size: 2.5rem;
+  }
+
+  .meme-library-header {
+    margin-bottom: 3rem;
+  }
+
+  .meme-library-container {
+    gap: 1.5rem;
+  }
+
+  .meme-item {
+    width: 280px;
+    height: 200px;
+    border-radius: 12px;
+    margin: 0 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .meme-library-section {
+    padding: 3rem 0;
+  }
+
+  .meme-library-title {
+    font-size: 2rem;
+  }
+
+  .meme-library-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .meme-library-container {
+    gap: 1.25rem;
+  }
+
+  .meme-item {
+    width: 220px;
+    height: 160px;
+    border-radius: 10px;
+    margin: 0 0.5rem;
+  }
+}
+

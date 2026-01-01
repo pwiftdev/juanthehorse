@@ -1,9 +1,108 @@
 import './About.css'
+import { useEffect, useRef } from 'react'
 import { GiHorseHead, GiRunningShoe, GiFireBowl } from 'react-icons/gi'
 import { FaFire } from 'react-icons/fa'
 import kymLogo from '../../assets/KnowYourMemelogo.png'
 
 function About() {
+  const originRef = useRef(null)
+  const yearRef = useRef(null)
+  const thesisRef = useRef(null)
+  const originBgRef = useRef(null)
+  const yearBgRef = useRef(null)
+  const thesisBgRef = useRef(null)
+  const immersiveStoryRef = useRef(null)
+
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.2,
+      rootMargin: '0px 0px -100px 0px'
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed')
+        }
+      })
+    }, observerOptions)
+
+    const refs = [originRef, yearRef, thesisRef]
+    refs.forEach(ref => {
+      if (ref.current) {
+        observer.observe(ref.current)
+      }
+    })
+
+      // Scroll effects for parallax and gradient movement
+      const handleScroll = () => {
+        const scrollY = window.scrollY
+        const windowHeight = window.innerHeight
+
+        // Parallax effect for each scene
+        const scenes = [
+          { scene: originRef.current, bg: originBgRef.current },
+          { scene: yearRef.current, bg: yearBgRef.current },
+          { scene: thesisRef.current, bg: thesisBgRef.current }
+        ]
+
+        scenes.forEach(({ scene, bg }) => {
+          if (scene) {
+            const rect = scene.getBoundingClientRect()
+            const sceneTop = rect.top + scrollY
+            const sceneCenter = sceneTop + rect.height / 2
+            const distanceFromCenter = scrollY - sceneCenter + windowHeight / 2
+            const parallaxOffset = distanceFromCenter * 0.3
+
+            // Calculate scroll progress (0 to 1)
+            const scrollProgress = Math.max(0, Math.min(1, (windowHeight - rect.top) / windowHeight))
+            const reverseProgress = 1 - scrollProgress
+
+            // Parallax for content with scale and blur effects
+            const content = scene.querySelector('.scene-content')
+            if (content) {
+              const progress = Math.max(0, Math.min(1, (windowHeight - rect.top) / windowHeight))
+              const scale = 0.95 + (progress * 0.05) // Scale from 0.95 to 1
+              const blur = Math.max(0, (1 - progress) * 10) // Blur when not in view
+              
+              content.style.transform = `translateY(${parallaxOffset * 0.5}px) scale(${scale})`
+              content.style.opacity = Math.max(0.3, Math.min(1, progress))
+              content.style.filter = `blur(${blur}px)`
+            }
+
+            // Animate gradient layers based on scroll
+            if (bg) {
+              const gradientLayers = bg.querySelectorAll('.gradient-layer')
+              gradientLayers.forEach((layer, index) => {
+                const speed = (index + 1) * 0.3
+                const xOffset = scrollProgress * 100 * speed
+                const yOffset = scrollProgress * 50 * speed
+                layer.style.transform = `translate(${xOffset}%, ${yOffset}%) scale(${1 + scrollProgress * 0.2})`
+              })
+            }
+
+            // Add shimmer effect to titles when in view
+            const title = scene.querySelector('.scene-title')
+            if (title && scrollProgress > 0.3 && scrollProgress < 0.7) {
+              title.style.textShadow = `0 0 ${30 * scrollProgress}px rgba(218, 165, 32, ${scrollProgress * 0.5})`
+            }
+          }
+        })
+      }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll() // Initial call
+
+    return () => {
+      refs.forEach(ref => {
+        if (ref.current) {
+          observer.unobserve(ref.current)
+        }
+      })
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+
   return (
     <section className="about" id="about">
       <div className="about-container">
@@ -13,124 +112,131 @@ function About() {
           <div className="title-underline"></div>
         </div>
         
-        <div className="story-grid">
-          <div className="story-card">
-            <div className="story-icon">
-              <GiHorseHead />
+        <div className="banner-container">
+          <div className="banner-track">
+            {/* First set */}
+            <div className="story-card">
+              <div className="story-icon">
+                <GiHorseHead />
+              </div>
+              <h3>$juan started the meta</h3>
             </div>
-            <h3>$juan started the meta</h3>
-            <p>Solana is now full of horses. But $juan is him.</p>
-          </div>
-
-          <div className="story-card highlight">
-            <div className="story-icon">
-              <GiRunningShoe />
+            <div className="story-card highlight">
+              <div className="story-icon">
+                <GiRunningShoe />
+              </div>
+              <h3>$juan is the runner</h3>
             </div>
-            <h3>$juan is the runner</h3>
-            <p>$juan just spawns anywhere and doesn't give a f*ck. Be like $juan.</p>
-          </div>
-
-          <div className="story-card">
-            <div className="story-icon">
-              <GiFireBowl />
+            <div className="story-card">
+              <div className="story-icon">
+                <GiFireBowl />
+              </div>
+              <h3>$juan is freedom</h3>
             </div>
-            <h3>$juan is freedom</h3>
-            <p>$juan represents the freedom, energy, and independence in each one of us traders.</p>
-          </div>
-
-          <div className="story-card">
-            <div className="story-icon">
-              <FaFire />
+            <div className="story-card">
+              <div className="story-icon">
+                <FaFire />
+              </div>
+              <h3>$juan leads the charge</h3>
             </div>
-            <h3>$juan leads the charge</h3>
-            <p>Leading the new era of animal-themed tokens on Solana.</p>
+            {/* Duplicate set for seamless loop */}
+            <div className="story-card">
+              <div className="story-icon">
+                <GiHorseHead />
+              </div>
+              <h3>$juan started the meta</h3>
+            </div>
+            <div className="story-card highlight">
+              <div className="story-icon">
+                <GiRunningShoe />
+              </div>
+              <h3>$juan is the runner</h3>
+            </div>
+            <div className="story-card">
+              <div className="story-icon">
+                <GiFireBowl />
+              </div>
+              <h3>$juan is freedom</h3>
+            </div>
+            <div className="story-card">
+              <div className="story-icon">
+                <FaFire />
+              </div>
+              <h3>$juan leads the charge</h3>
+            </div>
           </div>
         </div>
 
-        <div className="story-section">
-          <div className="story-timeline">
-            
-            {/* Origin Chapter */}
-            <div className="story-chapter">
-              <div className="chapter-marker">
-                <div className="marker-dot"></div>
-                <div className="marker-line"></div>
-              </div>
-              <div className="chapter-content">
-                <div className="chapter-header">
-                  <h3 className="chapter-title">The Origin</h3>
-                  <a 
-                    href="https://knowyourmeme.com/memes/juan-horse-on-balcony" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="kym-badge"
-                  >
-                    <img src={kymLogo} alt="Know Your Meme" className="kym-logo-small" />
-                  </a>
-                </div>
-                <div className="chapter-text">
-                  <p className="story-paragraph">
-                    Juan, also known as <span className="text-highlight">Horse On Balcony</span>, 
-                    became an internet legend in 2020.
-                  </p>
-                  <p className="story-paragraph">
-                    The image of a horse standing on a balcony has been used in memes since 2015, 
-                    but when the name "Juan" was added in 2020, it exploded into viral fame.
-                  </p>
-                  <p className="story-paragraph emphasis">
-                    Now, Juan is more than a meme — he's a movement.
-                  </p>
-                </div>
+        <div className="immersive-story" ref={immersiveStoryRef}>
+          {/* Origin Chapter */}
+          <div className="story-scene origin-scene" ref={originRef}>
+            <div className="scene-bg origin-bg" ref={originBgRef}>
+              <div className="gradient-layer gradient-layer-1"></div>
+              <div className="gradient-layer gradient-layer-2"></div>
+              <div className="gradient-layer gradient-layer-3"></div>
+            </div>
+            <div className="scene-content">
+              <div className="scene-label">THE ORIGIN</div>
+              <h2 className="scene-title">
+                <span className="title-word">Horse</span>
+                <span className="title-word">On</span>
+                <span className="title-word highlight">Balcony</span>
+              </h2>
+              <p className="scene-text">
+                2020. A legend was born.
+              </p>
+              <a 
+                href="https://knowyourmeme.com/memes/juan-horse-on-balcony" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="kym-link"
+              >
+                <img src={kymLogo} alt="Know Your Meme" />
+              </a>
+            </div>
+          </div>
+
+          {/* Year of Horse Chapter */}
+          <div className="story-scene year-scene" ref={yearRef}>
+            <div className="scene-bg year-bg" ref={yearBgRef}>
+              <div className="gradient-layer gradient-layer-1"></div>
+              <div className="gradient-layer gradient-layer-2"></div>
+              <div className="gradient-layer gradient-layer-3"></div>
+            </div>
+            <div className="scene-content">
+              <div className="scene-label">2026</div>
+              <h2 className="scene-title">
+                <span className="title-word">Year of</span>
+                <span className="title-word highlight">the Horse</span>
+              </h2>
+              <p className="scene-text">
+                Fire. Freedom. Energy.
+              </p>
+            </div>
+          </div>
+
+          {/* The Thesis Chapter */}
+          <div className="story-scene final-scene thesis-scene" ref={thesisRef}>
+            <div className="scene-bg thesis-bg" ref={thesisBgRef}>
+              <div className="gradient-layer gradient-layer-1"></div>
+              <div className="gradient-layer gradient-layer-2"></div>
+              <div className="gradient-layer gradient-layer-3"></div>
+            </div>
+            <div className="scene-content">
+              <div className="scene-label">THE THESIS</div>
+              <p className="scene-quote">
+                Some say it's the <span className="strike">worst year</span>
+              </p>
+              <h2 className="scene-title">
+                <span className="title-word">Counter</span>
+                <span className="title-word">the</span>
+                <span className="title-word highlight">narrative</span>
+              </h2>
+              <div className="final-message">
+                <p className="juan-text">$juan is that meme</p>
+                <p className="juan-text">$juan is freedom</p>
               </div>
             </div>
-
-            {/* Year of Horse Chapter */}
-            <div className="story-chapter">
-              <div className="chapter-marker">
-                <div className="marker-dot"></div>
-                <div className="marker-line"></div>
-              </div>
-              <div className="chapter-content">
-                <div className="chapter-header">
-                  <h3 className="chapter-title">2026: Year of the Horse</h3>
-                </div>
-                <div className="chapter-text">
-                  <p className="story-paragraph">
-                    <span className="text-highlight">2026 is the Year of the Horse.</span> In Chinese zodiac, 
-                    it's a fire element symbolizing freedom, energy, and independence.
-                  </p>
-                  <p className="story-paragraph">
-                    A year destined for breakthrough achievements and conquering obstacles.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* The Thesis Chapter */}
-            <div className="story-chapter final">
-              <div className="chapter-marker">
-                <div className="marker-dot final-dot"></div>
-              </div>
-              <div className="chapter-content">
-                <div className="chapter-header">
-                  <h3 className="chapter-title">The Thesis</h3>
-                </div>
-                <div className="chapter-text">
-                  <p className="story-paragraph">
-                    Some say it's the <span className="text-warning">"worst year of your life."</span>
-                  </p>
-                  <p className="story-paragraph">
-                    But here's the play: counter the narrative by aping into the best meme of the cycle.
-                  </p>
-                  <p className="story-paragraph final-statement">
-                    <span className="juan-highlight">$juan is that meme.</span>
-                    <br />
-                    <span className="juan-highlight">$juan is the energy in every degen trader.</span>
-                  </p>
-                </div>
-              </div>
-            </div>
-
           </div>
         </div>
       </div>
